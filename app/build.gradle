@@ -82,8 +82,10 @@ dependencies {
 tasks.whenTaskAdded { task ->
     if (task.name == 'externalNativeBuildRelease') {
         task.dependsOn ":native:externalNativeBuildRelease"
+	task.dependsOn ":app:genh"
     } else if (task.name == 'externalNativeBuildDebug') {
         task.dependsOn ":native:externalNativeBuildDebug"
+	task.dependsOn ":app:genh"
     }
 }
 
