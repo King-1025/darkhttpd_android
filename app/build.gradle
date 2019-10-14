@@ -1,0 +1,93 @@
+plugins {
+   id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        applicationId = 'king.darkhttpd'
+        minSdkVersion 14
+        targetSdkVersion 29
+        versionCode = 1
+        versionName = '1.0'
+        externalNativeBuild {
+	    cmake {
+              arguments '-DANDROID_STL=gnustl_static', '-DCMAKE_MAKE_PROGRAM=/usr/bin/ninja'
+              abiFilters "armeabi", "armeabi-v7a" , "arm64-v8a"
+            }
+        }
+    }
+
+    splits {
+        abi {
+            reset()
+            enable true //设为true，才能在打包时根据架构生成不同的apk文件
+            universalApk true  // If true, also generate a universal APK
+            include "armeabi-v7a", "arm64-v8a" // 设置所有要支持的abi类型
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                         'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            // let gradle pack the shared library into apk
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs         =        ['code']
+            aidl.srcDirs         =        ['code']
+            renderscript.srcDirs =        ['code']
+            res.srcDirs          =        ['res']
+            assets.srcDirs       =        ['assets']
+            jniLibs.srcDirs      =        ['../native/result/lib']
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            version '3.16.0-rc1'
+            path 'CMakeLists.txt'
+        }
+    }
+
+    packagingOptions {       //避免重复导入库
+/*         exclude 'lib/arm64-v8a/libcore.so'
+         exclude 'lib/armeabi/libcore.so'
+         exclude 'lib/armeabi-v7a/libcore.so'
+         exclude 'lib/mips/libcore.so'
+         exclude 'lib/mips64/libcore.so'
+         exclude 'lib/x86/libcore.so'
+         exclude 'lib/x86_64/libcore.so'
+	*/
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+}
+
+// Workaround library native code dependency issue in gradle 3.0.0
+// refer to https://issuetracker.google.com/issues/69616088
+// Note that the followings are only needed to generate lib package
+// into $project/distribution directory, does NOT affect application module;
+// Only enable these when want to build libs (together with note
+// inside settings.gradle)
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'externalNativeBuildRelease') {
+        task.dependsOn ":native:externalNativeBuildRelease"
+    } else if (task.name == 'externalNativeBuildDebug') {
+        task.dependsOn ":native:externalNativeBuildDebug"
+    }
+}
+
+task genh(type: Exec) {
+    workingDir './'
+    commandLine "./genh.sh"
+}

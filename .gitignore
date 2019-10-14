@@ -1,0 +1,8 @@
+build
+.gradle
+*swp
+*.log
+.externalNativeBuild
+.jni_class_build
+native/result
+app/code/jni/include
