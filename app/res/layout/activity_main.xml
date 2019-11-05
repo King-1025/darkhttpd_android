@@ -1,16 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.hellolibs.MainActivity">
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+	<RelativeLayout
+		android:layout_height="100dp"
+		android:layout_width="match_parent">
+
+		<ImageView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:src="@android:drawable/ic_delete"
+			android:layout_centerInParent="true"/>
+
+	</RelativeLayout>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:gravity="center_vertical"
+		android:layout_marginTop="5dp"
+		android:paddingLeft="18dp">
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="端口号："
+			android:textSize="15sp"/>
+
+		<EditText
+			android:layout_height="wrap_content"
+			android:inputType="numberDecimal"
+			android:layout_width="wrap_content"
+			android:ems="10"
+			android:id="@+id/activitymain0EditText1"
+			android:text="8080"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:gravity="center_vertical"
+		android:layout_marginTop="2dp"
+		android:paddingLeft="18dp">
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="根目录："
+			android:textSize="15sp"/>
+
+		<EditText
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:ems="10"
+			android:singleLine="true"
+			android:id="@+id/activitymain0EditText2"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:gravity="center_vertical"
+		android:layout_marginTop="2dp"
+		android:paddingLeft="18dp">
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="索引页："
+			android:textSize="15sp"/>
+
+		<EditText
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:ems="10"
+			android:singleLine="true"
+			android:id="@+id/activitymain0EditText3"
+			android:text="index.html"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:gravity="center_vertical"
+		android:layout_marginTop="2dp"
+		android:paddingLeft="3dp">
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="日志路径："
+			android:textSize="15sp"/>
+
+		<EditText
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:ems="10"
+			android:singleLine="true"
+			android:id="@+id/activitymain0EditText4"/>
+
+	</LinearLayout>
+
+	<RelativeLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent">
+
+		<Button
+			android:layout_height="80dp"
+			android:layout_width="110dp"
+			android:text="启动"
+			android:layout_alignParentBottom="false"
+			android:layout_centerInParent="true"
+			android:textSize="18sp"
+			android:id="@+id/activitymain0Button1"/>
+
+	</RelativeLayout>
+
+</LinearLayout>

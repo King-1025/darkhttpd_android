@@ -1,11 +1,7 @@
 #include <jni.h>
 #include <stdlib.h>
-#include <android/log.h>
 #include <darkhttpd.h>
 #include <jni_layer_Core.h>
-
-#define LOGI(...) \
-  ((void)__android_log_print(ANDROID_LOG_INFO, "core::", __VA_ARGS__))
 
 char** stringArrToCharArr(JNIEnv *env, jsize len, jobjectArray strArray ){
     int i=0;
